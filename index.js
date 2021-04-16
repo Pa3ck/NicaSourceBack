@@ -2,8 +2,22 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
+var config = require('./config');
+
 const app = express();
 const port = 3000;
+
+
+/***** Mongoose Config ****/ 
+const url = config.mongoUrl;
+
+const mongoose = require('mongoose');
+const connect = mongoose.connect(url, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
+
+connect.then((db) => {
+  console.log("Connected correctly to MongoDB server");
+}, (err) => { console.log(err); });
+/***********************/
 
 app.use(
     bodyParser.urlencoded({

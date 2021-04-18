@@ -25,7 +25,10 @@ exports.signup = (req, res, next) => {
         //     console.log(err);
     })
     .catch(err => {
-        console.log(err);
+        if(err.code === 11000){
+            err.message = 'user already exist';
+        }
+        next(err);
     })
 
 }

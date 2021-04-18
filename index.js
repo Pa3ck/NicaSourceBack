@@ -34,6 +34,21 @@ app.get('/', (request, response) => {
 
 app.use('/auth',authRoute)
 
+
+//Error Handler
+app.use((err, req, res, next) => {
+
+    console.log(err);
+
+    if (!err.message){
+        err.message = 'Unexpected Error';
+    }
+
+    res.status(err.status || 500);
+
+    res.json({error: true, message: err.message})
+})
+
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)
 });

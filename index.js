@@ -2,7 +2,8 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 
-var config = require('./config');
+const config = require('./config');
+const authRoute = require('./routes/authRoute')
 
 const app = express();
 const port = 3000;
@@ -25,9 +26,13 @@ app.use(
     })
 );
 
+
+// Routes
 app.get('/', (request, response) => {
     response.json({ info: 'Node.js, Express, and MongoDB API' })
 })
+
+app.use('/auth',authRoute)
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)

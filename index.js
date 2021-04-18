@@ -32,7 +32,7 @@ app.get('/', (request, response) => {
     response.json({ info: 'Node.js, Express, and MongoDB API' })
 })
 
-app.use('/auth',authRoute)
+app.use('/auth', authRoute)
 
 
 //Error Handler
@@ -46,7 +46,7 @@ app.use((err, req, res, next) => {
 
     res.status(err.status || 500);
 
-    res.json({error: true, message: err.message})
+    res.json({message: err.message})
 })
 
 app.listen(port, () => {

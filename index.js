@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const config = require('./config');
 const authRoute = require('./routes/authRoute');
 const syncRoute = require('./routes/syncRoute');
+const statisticsRoute = require('./routes/statisticsRoute');
 
 const app = express();
 const port = 3000;
@@ -14,7 +15,7 @@ const port = 3000;
 const url = config.mongoUrl;
 
 const mongoose = require('mongoose');
-const connect = mongoose.connect(url, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true });
+const connect = mongoose.connect(url, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false });
 
 connect.then((db) => {
   console.log("Connected correctly to MongoDB server");
@@ -27,6 +28,8 @@ app.use(
     })
 );
 
+app.use(express.json());
+
 
 // Routes
 app.get('/', (request, response) => {
@@ -35,6 +38,7 @@ app.get('/', (request, response) => {
 
 app.use('/auth', authRoute);
 app.use('/sync', syncRoute);
+app.use('/statistics', statisticsRoute);
 
 
 //Error Handler
@@ -49,7 +53,7 @@ app.use((err, req, res, next) => {
     res.status(err.status || 500);
 
     res.json({message: err.message})
-})
+});
 
 app.listen(port, () => {
     console.log(`App running on port ${port}.`)

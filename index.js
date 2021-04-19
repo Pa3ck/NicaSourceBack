@@ -3,7 +3,8 @@ const express = require('express');
 const bodyParser = require('body-parser');
 
 const config = require('./config');
-const authRoute = require('./routes/authRoute')
+const authRoute = require('./routes/authRoute');
+const syncRoute = require('./routes/syncRoute');
 
 const app = express();
 const port = 3000;
@@ -32,7 +33,8 @@ app.get('/', (request, response) => {
     response.json({ info: 'Node.js, Express, and MongoDB API' })
 })
 
-app.use('/auth', authRoute)
+app.use('/auth', authRoute);
+app.use('/sync', syncRoute);
 
 
 //Error Handler

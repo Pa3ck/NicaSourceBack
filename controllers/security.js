@@ -27,6 +27,7 @@ exports.verifyUser = (req, res, next) => {
         next();
     })
     .catch(err => {
+        console.log(err);
         return res.status(401).json({
             message: 'Token not valid'
         })

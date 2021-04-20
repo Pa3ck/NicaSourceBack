@@ -18,7 +18,7 @@ const url = config.mongoUrl;
 const mongoose = require('mongoose');
 const connect = mongoose.connect(url, { useNewUrlParser: true, useCreateIndex: true, useUnifiedTopology: true, useFindAndModify: false });
 
-connect.then((db) => {
+connect.then(() => {
   console.log("Connected correctly to MongoDB server");
 }, (err) => { console.log(err); });
 /***********************/
@@ -47,6 +47,7 @@ app.use('/statistics', statisticsRoute);
 
 
 //Error Handler
+// eslint-disable-next-line no-unused-vars
 app.use((err, req, res, next) => {
 
     console.log(err);

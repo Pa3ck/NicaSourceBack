@@ -2,7 +2,7 @@ const Statistics = require('../models/statisticsModel');
 
 exports.getStatistics = (req, res, next) => {
 
-    Statistics.find({})
+    Statistics.find({}).sort('continent')
     .then((stats) => {
         res.json({
             ok: true,
@@ -35,7 +35,7 @@ exports.setStatisticsCountry = (req, res, next) => {
 
 
     Statistics.findByIdAndUpdate(country_id , req.body)
-    .then((stats) => {
+    .then(() => {
         res.json({
             ok: true,
             message: "Updated Succesfully"

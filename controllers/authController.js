@@ -33,7 +33,7 @@ exports.login = (req, res, next) => {
                 message: 'Login Succesfull'
             })
         }else{
-            return res.status(422).send({message: 'Wrong email/password!'});
+            return res.status(422).json({message: 'Wrong email/password!'});
         }
 
     })

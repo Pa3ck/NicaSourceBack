@@ -33,7 +33,8 @@ exports.getStatisticsCountry = (req, res, next) => {
 exports.setStatisticsCountry = (req, res, next) => {
     const country_id = req.params.id;
 
-    Statistics.findByIdAndUpdate(country_id , req.body.data)
+
+    Statistics.findByIdAndUpdate(country_id , req.body)
     .then((stats) => {
         res.json({
             ok: true,

@@ -1,6 +1,7 @@
 
 const express = require('express');
 const bodyParser = require('body-parser');
+const cors = require('cors');
 
 const config = require('./config');
 const authRoute = require('./routes/authRoute');
@@ -29,6 +30,10 @@ app.use(
 );
 
 app.use(express.json());
+
+
+//cors
+app.use(cors({origin: true, credentials:true}));
 
 
 // Routes
